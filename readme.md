@@ -6,3 +6,5 @@
 [![Lint](https://github.com/jncraton/jsqa/actions/workflows/lint.yml/badge.svg)](https://github.com/jncraton/jsqa/actions/workflows/lint.yml)
 
 A wikidata-powered Q&A engine in the browser
+
+[Demo](https://jncraton.github.io/jsqa/)
