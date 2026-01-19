@@ -142,15 +142,18 @@
         if (entityResults.length === 0) return `Could not find entity: ${entityQuery}`
 
         const property = propResults[0]
-        const entity = entityResults[0]
 
-        const val = await getPropValue(entity.id, property.id)
-        if (!val) return `I found ${entity.label}, but no ${property.label} data is available.`
+        for (let entity of entityResults) {
+          const val = await getPropValue(entity.id, property.id)
 
-        const propLabel = property.label.charAt(0).toUpperCase() + property.label.slice(1)
-        const description = entity.description ? ` (${entity.description})` : ''
+          if (!val) continue
 
-        return `${propLabel} of ${entity.label}${description} is ${val}.`
+          const propLabel = property.label.charAt(0).toUpperCase() + property.label.slice(1)
+          const description = entity.description ? ` (${entity.description})` : ''
+
+          return `${propLabel} of ${entity.label}${description} is ${val}.`
+        }
+        return `I found ${entity.label}, but no ${property.label} data is available.`
       }
 
       const form = document.getElementById('qa-form')
